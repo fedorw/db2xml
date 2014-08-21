@@ -4,9 +4,9 @@ db2xml
 populate xml from jdbc databases with templates like this:
 
 
-<?xml version="1.0"?>
-<ff>
-    <customer>
+	<?xml version="1.0"?>
+	<ff>
+	    <customer>
 		select Username, Email,CustomerID from customer
 			<licenses push="CustomerID" mute="true">
 	       	     select ? as id
@@ -15,4 +15,4 @@ populate xml from jdbc databases with templates like this:
 				</license>
 			</licenses>
 		</customer>
-</ff>
+	</ff>
