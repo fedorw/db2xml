@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ff>
+	<product>
+		select Title,Description,ProductID from product
+		<requests push="ProductID" mute="true">
+            select ? as id
+			<req push="id">
+				select * from support_request where ProductID=?
+			</req>
+		</requests>
+	</product>
+</ff>
+
+

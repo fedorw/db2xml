@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project name="extsort" default="all" basedir=".">
+  <path id="base.path">
+    <fileset dir="lib">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+  <property name="classpath" 
+		  value="
+		  mysql-connector-java-5.1.25.jar
+		  xom-1.2.1.jar
+	      	  commons-lang-2.4.jar    "/>
+  <target name="dist" depends="clean,compile">
+    <jar destfile="dist/db2xml.jar">
+      <fileset dir="bin"/>
+      <manifest>
+        <attribute name="Main-Class" value="fw.Main"/>
+        <attribute name="Class-Path" value="${classpath}"/>
+      </manifest>
+    </jar>
+    <copy todir="dist/">
+      <fileset dir="lib">
+        <include name="*.jar"/>
+      </fileset>
+    </copy>
+  </target>
+  <target name="clean">
+    <delete dir="bin"/>
+    <delete dir="dist"/>
+    <delete dir="out"/>
+  </target>
+  <target name="compile" depends="clean">
+    <mkdir dir="bin"/>
+    <mkdir dir="dist"/>
+    <javac includeantruntime="false" target="1.7" srcdir="src" destdir="bin" classpathref="base.path" debug="on" optimize="on"/>
+  </target>
+  <target name="all" depends="compile,dist">
+		</target>
+</project>
